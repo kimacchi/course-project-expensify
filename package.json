@@ -7,6 +7,8 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production",
     "dev-server": "webpack serve --mode development"
   },
   "dependencies": {
@@ -17,6 +19,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "live-server": "^1.2.1",
+    "mini-css-extract-plugin": "^2.5.3",
     "moment": "^2.29.1",
     "node": "^17.4.0",
     "node-sass": "^7.0.1",
