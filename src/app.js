@@ -10,6 +10,23 @@ import "./firebaseapp/firebase";
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
 import "../src/firebaseapp/firebase";
+import { push } from "firebase/database";
+import { v4 as uuid4 } from "uuid";
+// import db from "../firebaseapp/firebase";
+import {
+  getDatabase,
+  ref,
+  set,
+  update,
+  remove,
+  get,
+  onValue,
+  DataSnapshot,
+  off,
+  unsubscribe,
+  onChildRemoved,
+} from "firebase/database";
+import { onAuthStateChanged } from "firebase/auth";
 
 const store = configureStore();
 
@@ -23,4 +40,12 @@ ReactDOM.render(jsx, document.getElementById("app"));
 
 store.dispatch(startSetExpenses()).then(() => {
   ReactDOM.render(jsx, document.getElementById("app"));
+});
+
+onAuthStateChanged((user) => {
+  if (user) {
+    console.log("log in");
+  } else {
+    console.log("log out");
+  }
 });

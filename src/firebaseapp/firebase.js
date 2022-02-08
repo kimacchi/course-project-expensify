@@ -13,6 +13,7 @@ import {
   push,
   onChildRemoved,
 } from "firebase/database";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbRdslm5CyxV3UlTsg0Yx3Oep_mGQlu-o",
@@ -35,7 +36,9 @@ const app = initializeApp(firebaseConfig);
 
 const db = getDatabase();
 
-export { initializeApp, db as default };
+const googleProvider = new GoogleAuthProvider();
+
+export { initializeApp, googleProvider, db as default };
 
 // onChildRemoved(ref(db, "expenses"), (snapshot) => {
 //   console.log(snapshot.key);

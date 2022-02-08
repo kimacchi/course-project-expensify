@@ -12,13 +12,14 @@ import ExpenseDashboard from "../components/ExpenseDashboard";
 import Header from "../components/Header";
 import Help from "../components/Help";
 import NotFound from "../components/NotFound";
+import { LoginPage } from "../components/LoginPage";
 
 const AppRouter = () => (
   <Router>
     <div>
       <Header />
       <NavLink
-        to="/"
+        to="/home"
         className={({ isActive }) => {
           return isActive ? "is-active" : undefined;
         }}
@@ -44,7 +45,8 @@ const AppRouter = () => (
     </div>
     <div>
       <Routes>
-        <Route path="/" element={<ExpenseDashboard />} exact={true} />
+        <Route path="/" element={<LoginPage />} exact={true} />
+        <Route path="/home" element={<ExpenseDashboard />} />
         <Route path="/create" element={<AddExpense />} />
         <Route path="/help" element={<Help />} />
         <Route path={`/edit/:id`} element={<EditExpense />} />
