@@ -1,5 +1,18 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, update, remove, once } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  update,
+  remove,
+  get,
+  onValue,
+  DataSnapshot,
+  off,
+  unsubscribe,
+  push,
+  onChildRemoved,
+} from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbRdslm5CyxV3UlTsg0Yx3Oep_mGQlu-o",
@@ -21,6 +34,54 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getDatabase();
+
+export { initializeApp, db as default };
+
+// onChildRemoved(ref(db, "expenses"), (snapshot) => {
+//   console.log(snapshot.key);
+// });
+
+// onValue(ref(db, "expenses"), (snapshot) => {
+//   const expenses = [];
+//   snapshot.forEach((ele) => {
+//     expenses.push({
+//       id: ele.key,
+//       ...ele.val(),
+//     });
+//   });
+//   console.log(expenses);
+// });
+
+// push(ref(db, "expenses"), {
+//   description: "water bill",
+//   note: "",
+//   amount: 5000,
+//   createdAt: 1000,
+// });
+// push(ref(db, "expenses"), {
+//   description: "gas bill",
+//   note: "gas bill",
+//   amount: 3000,
+//   createdAt: 1500,
+// });
+// push(ref(db, "expenses"), {
+//   description: "coffee",
+//   note: "starbucks",
+//   amount: 700,
+//   createdAt: 2000,
+// });
+
+// onValue(
+//   ref(db),
+//   (snapshot) => {
+//     const val = snapshot.val();
+//     console.log(val);
+//   },
+//   (err) => {
+//     console.log("error", err);
+//   },
+//   { onlyOnce: false }
+// );
 
 // set(ref(db), {
 //   name: "Ahmet",
@@ -51,11 +112,14 @@ const db = getDatabase();
 //   location: { city: "Seattle", country: "United States" },
 // });
 
-// ref(db)
-//   .once("value")
-//   .then((snapshot) => {
-//     snapshot.val();
-//   })
-//   .catch((e) => {
-//     console.log("error", e);
-//   });
+// onValue(
+//   ref(db),
+//   (snapshot) => {
+//     const val = snapshot.val();
+//     console.log(val);
+//   },
+//   (err) => {
+//     console.log("error", err);
+//   },
+//   {onlyOnce: true}
+// );
