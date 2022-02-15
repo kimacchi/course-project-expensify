@@ -5,6 +5,7 @@ import ExpenseForm from "./ExpenseForm";
 import { startEditExpense } from "../actions/expenses";
 import { useNavigate } from "react-router-dom";
 import { setRemoveExpense } from "../actions/expenses";
+import Header from "./Header";
 
 const EditExpense = (props) => {
   const { id } = useParams();
@@ -12,6 +13,7 @@ const EditExpense = (props) => {
   const navigate = useNavigate();
   return (
     <div>
+      <Header />
       <ExpenseForm
         expense={selectedExpense}
         onSubmit={(expense) => {

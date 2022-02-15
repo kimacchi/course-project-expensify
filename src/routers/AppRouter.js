@@ -53,9 +53,6 @@ const PublicLogin = connect(mapStateToProps)(publicLogin);
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      <Header />
-    </div>
-    <div>
       <Routes>
         <Route path="/" element={<PublicLogin />} exact={true} />
         <Route path="/home" element={<PrivateHome/>} />
