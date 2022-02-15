@@ -1,32 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import AppRouter from "./routers/AppRouter";
+import AppRouter, {history} from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
 import { startSetExpenses } from "./actions/expenses";
-import { setTextFilter } from "./actions/filters";
-import getVisibleExpenses from "./selectors/expenses";
+import {login, logout} from "./actions/auth";
 import "./firebaseapp/firebase";
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
-import "../src/firebaseapp/firebase";
-import { push } from "firebase/database";
-import { v4 as uuid4 } from "uuid";
-// import db from "../firebaseapp/firebase";
-import {
-  getDatabase,
-  ref,
-  set,
-  update,
-  remove,
-  get,
-  onValue,
-  DataSnapshot,
-  off,
-  unsubscribe,
-  onChildRemoved,
-} from "firebase/database";
-import { onAuthStateChanged } from "firebase/auth";
+import { firebase } from './firebaseapp/firebase';
+import "firebase/compat/auth"
+import "firebase/compat/database"
+import "firebase/compat/firestore"
+import "firebase/compat/functions"
+import "firebase/compat/app-check"
+import "firebase/compat/storage"
 
 const store = configureStore();
 
@@ -36,16 +24,20 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById("app"));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(jsx, document.getElementById("app"));
-});
 
-onAuthStateChanged((user) => {
+
+firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log("log in");
+    console.log('log in');
+    store.dispatch(login(user.uid));
+    store.dispatch(startSetExpenses()).then(() => {
+      ReactDOM.render(jsx, document.getElementById('app'));
+    });
   } else {
-    console.log("log out");
+    console.log('log out');
+    store.dispatch(logout());
+    ReactDOM.render(jsx, document.getElementById('app'));
   }
 });

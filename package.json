@@ -21,6 +21,7 @@
     "css-loader": "^6.5.1",
     "express": "4.15.4",
     "firebase": "^9.6.5",
+    "history": "4.10.1",
     "mini-css-extract-plugin": "^2.5.3",
     "moment": "^2.29.1",
     "node": "^17.4.0",
