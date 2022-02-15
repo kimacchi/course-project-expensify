@@ -15,6 +15,7 @@ import "firebase/compat/firestore"
 import "firebase/compat/functions"
 import "firebase/compat/app-check"
 import "firebase/compat/storage"
+import LoadingPage from "./components/LoadingPage";
 
 const store = configureStore();
 
@@ -24,7 +25,7 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage/>, document.getElementById('app'));
 
 
 

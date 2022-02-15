@@ -14,6 +14,12 @@ const EditExpense = (props) => {
   return (
     <div>
       <Header />
+      <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Edit Expense</h1>
+          </div>
+      </div>
+      <div className="content-container">
       <ExpenseForm
         expense={selectedExpense}
         onSubmit={(expense) => {
@@ -23,6 +29,7 @@ const EditExpense = (props) => {
         }}
       />
       <button
+        className="button button--secondary"
         onClick={() => {
           console.log(selectedExpense.id);
           props.dispatch(setRemoveExpense({ id: selectedExpense.id }));
@@ -31,6 +38,7 @@ const EditExpense = (props) => {
       >
         Remove
       </button>
+      </div>
     </div>
   );
 };

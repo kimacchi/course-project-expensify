@@ -6,37 +6,28 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export const Header = ({startLogout}) => {
+export const Header = ({startLogout, uid}) => {
   const navigate = useNavigate();
   return (
-    <header>
-      <h1>Expensify</h1>
-      <NavLink
-        to="/home"
-        className={({ isActive }) => {
-          return isActive ? "is-active" : undefined;
-        }}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/create"
-        className={({ isActive }) => {
-          return isActive ? "is-active" : undefined;
-        }}
-      >
-        Create Expense
-      </NavLink>
-      <button onClick={()=>{
+    <header className="header">
+      <div className="content-container">
+      <div className="header__content">
+        <NavLink className="header__title" to="/home">
+          <h1>Expensify</h1>
+        </NavLink>
+        <button className="button button--link" onClick={()=>{
         startLogout();
         navigate("/");
       }}>Logout</button>
+      </div>
+    </div>
+
     </header>
   );
 }
 
 const mapDispatchToProps =(dispatch)=>({
-  startLogout: ()=>dispatch(startLogout())
+  startLogout: ()=>dispatch(startLogout()),
 });
 
 
